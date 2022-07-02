@@ -18,15 +18,14 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
+
 Route::controller(EstoqueController::class)->group(function (){
     Route::get('/estoque','index')->name('estoque.index');
+    Route::get('/estoque/create','create')->name('estoque.create');
+    Route::post('/estoque/create','store');
+
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-
-

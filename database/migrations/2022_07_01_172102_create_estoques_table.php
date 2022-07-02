@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('estoques', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
+            //$table->timestamps();
+            $table->string('nome');
             $table->date('data')->default(now());
-            $table->enum('tipo',['venda','compra','proteçao']);
+            $table->enum('tipo',['venda','compra','protecao'])->default('venda');
             $table->boolean('finalizado')->default(false);
-            $table->foreignIdFor(User::class);
+            //$table->foreignIdFor(User::class);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
     

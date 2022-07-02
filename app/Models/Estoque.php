@@ -9,6 +9,14 @@ class Estoque extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nome',
+        'data',
+        'tipo',
+        'user_id'
+    ];
 
     public function user()
     {
