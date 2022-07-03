@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    //
+    public function index(Request $request)
+    {
+        dd($request);
+    }
 }

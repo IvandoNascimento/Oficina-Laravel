@@ -23,7 +23,9 @@ Route::controller(EstoqueController::class)->group(function (){
     Route::get('/estoque','index')->name('estoque.index');
     Route::get('/estoque/create','create')->name('estoque.create');
     Route::post('/estoque/create','store');
-
+    Route::delete('estoque/remove/{id}','remove')->name('estoque.remove');
+    Route::get('estoque/{id}','show')->name('estoque.show');
+    Route::get('estoque/edit/{id}','edit')->name('estoque.edit');
 });
 
 Auth::routes();

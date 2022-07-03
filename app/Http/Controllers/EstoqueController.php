@@ -14,7 +14,7 @@ class EstoqueController extends Controller
     public function index(Request $request)
     {
         
-        $estoques =  Estoque::query()->orderBy('nome')->get();
+        $estoques =  Estoque::query()->orderBy('id')->get();
 
         return view('estoque.index',compact('estoques'));
     }
@@ -41,9 +41,26 @@ class EstoqueController extends Controller
         $estoque->save();
         return redirect()->route('estoque.index');
     }
-    //remover
-    public function remove()
+    //mostrar
+    public function show(int $id)
     {
+        $estoque = Estoque::find($id);
+        return view('estoque.show', compact('estoque'));
+    }
+    //remover
+    public function remove(int $id)
+    {
+        $estoque = Estoque::find($id);
+        $estoque->delete();
 
+        return redirect()->route('estoque.index');
+    }
+    //editar    
+    
+    public function edit(int $id)
+    {
+        $estoques = Estoque::find($id);
+        dd($estoques);
+        //return view('estoque.index',compact('estoques'));
     }
 }
