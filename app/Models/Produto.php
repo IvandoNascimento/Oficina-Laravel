@@ -9,6 +9,15 @@ class Produto extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nome',
+        'preco',
+        'quantidade',
+        'estoque_id'
+    ];
+
     public function estoque()
     {
         return $this->belongsTo(Estoque::class);

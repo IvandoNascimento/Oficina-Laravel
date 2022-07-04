@@ -13,17 +13,16 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-              <span class="navbar-brand" >Estoque</span>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+              @auth
+              <span class="navbar-brand" >Usuario: {{Auth::user()->name}}</span>
+              @endauth
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('estoque.index')}}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('estoque.create')}}">Cadastrar</a>
+                    <a class="nav-link" href="{{route('cadastro.create')}}">Cadastrar</a>
                   </li>
                   </li>
                 </ul>
