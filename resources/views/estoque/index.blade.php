@@ -1,7 +1,7 @@
 <x-layout  header="Lista de Estoques">
     <div class="container-mid">
         <div>
-            <table class="table">
+            <table class="table table-bordered border-dark">
                 <thead>
                   <tr>
                     <th scope="col">Identificador</th>
@@ -14,8 +14,8 @@
                 </thead>
                 <tbody>
                 @foreach ($estoques as $estoque)
-                  <div>
-                    <tr class="list-group-item-{{$estoque->tipo == 'venda' ? 'info' : 'warning' }} ">
+                  
+                    <tr class="list-group-item-{{($estoque->tipo == 'venda') ? 'info' : (($estoque->tipo == 'protecao') ? 'warning' : 'success');}} ">
                     <th scope="row">{{$estoque->id}}</th>
                     <td>
                         <a href="{{route('produto.index', ['id' => $estoque->id])}}" style="text-decoration: none" >{{$estoque->nome}}</a></td>
@@ -40,7 +40,7 @@
                           </span>
                     </td>
                   </tr>
-                  </div>
+                 
                   
                   @endforeach
                 </tbody>
@@ -49,4 +49,5 @@
         </div>
         <a class="btn btn-success" href="{{route('estoque.create')}}">Adicionar</a>
     </div>
+   
 </x-layout>

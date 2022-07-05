@@ -18,13 +18,24 @@
               @endauth
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                  @auth
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('estoque.index')}}">Home</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="{{route('cadastro.logout')}}">Log out</a>
+                  </li>
+                  @endauth
+
+                  
+                  @guest
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('cadastro.index')}}">Login</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="{{route('cadastro.create')}}">Cadastrar</a>
                   </li>
-                  </li>
+                  @endguest
                 </ul>
               </div>
             </div>

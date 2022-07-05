@@ -27,23 +27,33 @@ Route::controller(EstoqueController::class)->group(function (){
     Route::post('/estoque/create','store');
     Route::delete('estoque/remove/{id}','remove')->name('estoque.remove');
     Route::get('estoque/{id}','show')->name('estoque.show');
-    Route::get('estoque/edit/{id}','edit')->name('estoque.edit');
+    Route::get('estoque/{id}/edit','edit')->name('estoque.edit');
+    Route::post('estoque/{id}/edit','update');
+    
 });
 Route::controller(ProdutoController::class)->group(function (){
-    Route::get('estoque/{id}/produto','index')->name('produto.index');
-    //Route::get('/produto/{id}','show')->name('produto.show');
-    Route::get('/produto/{id}/create','create')->name('produto.create');
-    Route::post('/produto/{id}/create','store')->name('produto.store');
+    Route::prefix('produto')->group(function () {
+        Route::get('{id}','index')->name('produto.index');
+        Route::get('{id}/create','create')->name('produto.create');
+        Route::post('{id}/create','store')->name('produto.store');
+    });
 });
+
 
 
 Route::controller(CadastroController::class)->group(function (){
-    Route::get('/cadastro/login', 'index')->name('cadastro.index');
-    Route::post('/cadastro/login', 'logar');
-    Route::get('/cadastro/register', 'create')->name('cadastro.create');
-    Route::post('/cadastro/register', 'store');
+    Route::prefix('cadastro')->group(function () {
+        Route::get('login', 'index')->name('cadastro.index');
+        Route::post('login', 'logar');
+        Route::get('register', 'create')->name('cadastro.create');
+        Route::post('register', 'store');
+        Route::get('logout', function () {
+            Auth::logout();
+            return redirect()->route('cadastro.index');
+        })->name('cadastro.logout');
+    });
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
