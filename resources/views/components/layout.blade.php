@@ -11,19 +11,19 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-dark " >
+            <div class="container-fluid text-white ">
               @auth
-              <span class="navbar-brand" >Usuario: {{Auth::user()->name}}</span>
+              <span class="navbar-brand " >Usuario: {{Auth::user()->name}}</span>
               @endauth
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+              <div class="collapse navbar-collapse"  id="navbarNav">
+                <ul class="navbar-nav" >
                   @auth
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('estoque.index')}}">Home</a>
+                    <a class="nav-link" style="color: white" aria-current="page" href="{{route('estoque.index')}}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('cadastro.logout')}}">Log out</a>
+                    <a class="nav-link" style="color: white" href="{{route('cadastro.logout')}}">Log out</a>
                   </li>
                   @endauth
 

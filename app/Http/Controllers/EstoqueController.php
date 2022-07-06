@@ -28,7 +28,7 @@ class EstoqueController extends Controller
     {
         
         //nome data tipo
-        //dd($request->all());
+        
         $user = Auth::user();
         $estoque = Estoque::create([
             'nome' => $request->nome,
@@ -39,12 +39,6 @@ class EstoqueController extends Controller
         
         $estoque->save();
         return redirect()->route('estoque.index');
-    }
-    //mostrar
-    public function show(int $id)
-    {
-        $estoque = Estoque::find($id);
-        return view('estoque.show', compact('estoque'));
     }
     //remover
     public function remove(int $id)
@@ -63,9 +57,10 @@ class EstoqueController extends Controller
         
         return view('estoque.edit',compact('estoque'));
     }
-    public function update(Request $request){
+    public function update(Request $request,int $id){
         
-        $estoque = Estoque::find($request->route()->id);
+        
+        $estoque = Estoque::find($id);
         $estoque->nome = $request->nome;
         $estoque->data = $request->data;
         $estoque->tipo = $request->tipo;

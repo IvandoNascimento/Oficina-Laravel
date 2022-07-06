@@ -22,20 +22,24 @@ Route::get('/', function () {
 });
 
 Route::controller(EstoqueController::class)->group(function (){
-    Route::get('/estoque','index')->name('estoque.index');
-    Route::get('/estoque/create','create')->name('estoque.create');
-    Route::post('/estoque/create','store');
-    Route::delete('estoque/remove/{id}','remove')->name('estoque.remove');
-    Route::get('estoque/{id}','show')->name('estoque.show');
-    Route::get('estoque/{id}/edit','edit')->name('estoque.edit');
-    Route::post('estoque/{id}/edit','update');
-    
+    Route::prefix('estoque')->group(function () {
+        Route::get('','index')->name('estoque.index');
+        Route::get('create','create')->name('estoque.create');
+        Route::post('create','store');
+        Route::delete('{id}/remove','remove')->name('estoque.remove');
+        Route::get('{id}/edit','edit')->name('estoque.edit');
+        Route::post('{id}/edit','update');
+    });
 });
 Route::controller(ProdutoController::class)->group(function (){
-    Route::prefix('produto')->group(function () {
-        Route::get('{id}','index')->name('produto.index');
-        Route::get('{id}/create','create')->name('produto.create');
-        Route::post('{id}/create','store')->name('produto.store');
+    Route::prefix('produto/{id}')->group(function () {
+        Route::get('','index')->name('produto.index');
+        Route::get('create','create')->name('produto.create');
+        Route::post('create','store')->name('produto.store');
+        Route::get('show/{idProduto}','show')->name('produto.show');
+        Route::delete('remove','remove')->name('produto.remove');
+        Route::get('edit/{idProduto}','edit')->name('produto.edit');
+        Route::post('edit/{idProduto}','update');
     });
 });
 
